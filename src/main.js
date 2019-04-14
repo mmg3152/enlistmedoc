@@ -5,6 +5,7 @@ import "./plugins/vuetify";
 import "./plugins/sweetalert2";
 import "./plugins/fontawesome";
 import "./plugins/moment";
+import "./plugins/axios";
 import App from "./App";
 import router from "./router";
 
