@@ -28,6 +28,7 @@
           <v-btn flat color="#fff" @click="navigate('Patient Guide')">Patient Guide</v-btn>
         </template>
         <template v-if="type == 'Secretary'">
+          <v-btn flat color="#fff" @click="navigate('Secretary View')">Schedules</v-btn>
           <v-btn flat color="#fff">Enlistments</v-btn>
           <v-menu offset-y>
             <template v-slot:activator="{ on }">

@@ -26,6 +26,8 @@ import SecretaryDashboard from "@/components/secretary/Dashboard";
 import SecretarySMS from "@/components/secretary/sms";
 import SecretaryOnline from "@/components/secretary/online";
 import SecretarySettings from "@/components/secretary/settings";
+import SecretaryViewSchedule from "@/components/secretary/create";
+import SecretaryCreateSchedule from "@/components/secretary/createView";
 
 import ClerkDashboard from "@/components/clerk/Dashboard";
 import AccreditedDoctors from "@/components/clerk/Accredited";
@@ -227,6 +229,24 @@ const Routes = new Router({
       path: "/secretary/settings",
       name: "Secretary Settings",
       component: SecretarySettings,
+      meta: {
+        requiresAuth: true,
+        type: "Secretary"
+      }
+    },
+    {
+      path: "/secretary/view",
+      name: "Secretary View",
+      component: SecretaryViewSchedule,
+      meta: {
+        requiresAuth: true,
+        type: "Secretary"
+      }
+    },
+    {
+      path: "/secretary/create",
+      name: "Secretary Create",
+      component: SecretaryCreateSchedule,
       meta: {
         requiresAuth: true,
         type: "Secretary"
