@@ -140,11 +140,13 @@
                             </v-container>
                           </v-card-text>
                         </template>
-                        <v-card-actions class="pb-0">
-                          <v-spacer></v-spacer>
-                          <v-btn depressed color="#075525" dark @click="enlist">Enlist</v-btn>
-                          <v-spacer></v-spacer>
-                        </v-card-actions>
+                        <template v-if="isAuthenticated()">
+                          <v-card-actions class="pb-0">
+                            <v-spacer></v-spacer>
+                            <v-btn depressed color="#075525" dark @click="enlist">Enlist</v-btn>
+                            <v-spacer></v-spacer>
+                          </v-card-actions>
+                        </template>
                       </v-card>
                     </v-tab-item>
                   </v-tabs>
@@ -275,11 +277,13 @@
                             </v-container>
                           </v-card-text>
                         </template>
-                        <v-card-actions class="pb-0">
-                          <v-spacer></v-spacer>
-                          <v-btn depressed color="#075525" dark @click="enlist">Enlist</v-btn>
-                          <v-spacer></v-spacer>
-                        </v-card-actions>
+                        <template v-if="isAuthenticated()">
+                          <v-card-actions class="pb-0">
+                            <v-spacer></v-spacer>
+                            <v-btn depressed color="#075525" dark @click="enlist">Enlist</v-btn>
+                            <v-spacer></v-spacer>
+                          </v-card-actions>
+                        </template>
                       </v-card>
                     </v-tab-item>
                   </v-tabs>
@@ -410,11 +414,13 @@
                             </v-container>
                           </v-card-text>
                         </template>
-                        <v-card-actions class="pb-0">
-                          <v-spacer></v-spacer>
-                          <v-btn depressed color="#075525" dark @click="enlist">Enlist</v-btn>
-                          <v-spacer></v-spacer>
-                        </v-card-actions>
+                        <template v-if="isAuthenticated()">
+                          <v-card-actions class="pb-0">
+                            <v-spacer></v-spacer>
+                            <v-btn depressed color="#075525" dark @click="enlist">Enlist</v-btn>
+                            <v-spacer></v-spacer>
+                          </v-card-actions>
+                        </template>
                       </v-card>
                     </v-tab-item>
                   </v-tabs>
@@ -429,6 +435,7 @@
 </template>
 
 <script>
+import { getCookie } from "../../helper";
 export default {
   name: "SearchResult",
   data() {
@@ -447,6 +454,10 @@ export default {
         confirmButtonText: "Close",
         allowOutsideClick: false
       });
+    },
+    isAuthenticated() {
+      console.log(getCookie("type"));
+      return getCookie("type");
     }
   }
 };

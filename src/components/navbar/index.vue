@@ -10,25 +10,25 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <template v-if="!type">
-          <v-btn flat color="#fff" @click="navigate('About Us')">About Us</v-btn>
-          <v-btn flat color="#fff" @click="navigate('User')">Guest Enlist</v-btn>
-          <v-btn flat color="#fff" @click="navigate('Search Doctor')">Search Doctor</v-btn>
-          <v-btn flat color="#fff" @click="navigate('Patient Guide')">Patient Guide</v-btn>
+          <v-btn flat exact dark to="/user/about-us">About Us</v-btn>
+          <v-btn flat exact dark to="/user/dashboard">Guest Enlist</v-btn>
+          <v-btn flat exact dark to="/user/search">Search Doctor</v-btn>
+          <v-btn flat exact dark to="/user/patient-guide">Patient Guide</v-btn>
         </template>
         <template v-if="type === 'Clerk'">
-          <v-btn flat color="#fff" @click="navigate('Loa Request')">Loa Request</v-btn>
-          <v-btn flat color="#fff" @click="navigate('Accredited Doctors')">Accredited Doctors</v-btn>
+          <v-btn flat dark @click="navigate('Loa Request')">Loa Request</v-btn>
+          <v-btn flat exact dark to="/clerk/doctors">Accredited Doctors</v-btn>
         </template>
         <template v-if="type === 'User'">
-          <v-btn flat color="#fff" @click="navigate('About Us')">About Us</v-btn>
-          <v-btn flat color="#fff" @click="navigate('User')">Enlist</v-btn>
-          <v-btn flat color="#fff" @click="navigate('Search Doctor')">Search Doctor</v-btn>
-          <v-btn flat color="#fff" @click="navigate('Enlistment')">My Enlistments</v-btn>
-          <v-btn flat color="#fff" @click="navigate('HMO')">HMO</v-btn>
-          <v-btn flat color="#fff" @click="navigate('Patient Guide')">Patient Guide</v-btn>
+          <v-btn flat exact dark to="/user/about-us">About Us</v-btn>
+          <v-btn flat exact dark to="/user/dashboard">Enlist</v-btn>
+          <v-btn flat exact dark to="/user/search">Search Doctor</v-btn>
+          <v-btn flat exact dark to="/user/my-enlistment">My Enlistments</v-btn>
+          <v-btn flat exact dark to="/user/hmo">HMO</v-btn>
+          <v-btn flat exact dark to="/user/patient-guide">Patient Guide</v-btn>
         </template>
         <template v-if="type == 'Secretary'">
-          <v-btn flat color="#fff" @click="navigate('Secretary View')">Schedules</v-btn>
+          <v-btn flat exact dark to="/secretary/view">Schedules</v-btn>
           <v-btn flat color="#fff">Enlistments</v-btn>
           <v-menu offset-y>
             <template v-slot:activator="{ on }">
@@ -248,5 +248,10 @@ export default {
 .subheader {
   font-size: 16px;
   color: #075525;
+}
+.v-btn--active:before,
+.v-btn:focus:before,
+.v-btn:hover:before {
+  background-color: #000;
 }
 </style>

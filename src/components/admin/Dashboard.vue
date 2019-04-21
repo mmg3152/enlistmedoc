@@ -14,12 +14,12 @@
                   <p class="text-xs-center link">Secretary</p>
                 </div>
               </v-flex>
-              <v-flex xs12>
+              <!-- <v-flex xs12>
                 <div class="text-xs-center" @click="navigate('Add Department')">
                   <v-icon>add</v-icon>
                   <p class="text-xs-center link">Doctor</p>
                 </div>
-              </v-flex>
+              </v-flex>-->
               <v-flex xs12>
                 <div class="text-xs-center" @click="navigate('Add Clerk')">
                   <v-icon>add</v-icon>

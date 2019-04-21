@@ -17,6 +17,7 @@
                         width="70"
                         height="40"
                         style="vertical-align: middle;"
+                        @click="showImage = true;"
                       >
                     </td>
                     <td class="text-xs-right">{{ props.item.birthday }}</td>
@@ -33,6 +34,19 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-dialog v-model="showImage" width="350">
+      <v-card>
+        <v-card-text class="text-xs-center">
+          <img
+            src="../../assets/x.jpg"
+            width="300"
+            height="300"
+            style="vertical-align: middle;"
+            @click="showImage = true;"
+          >
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -64,7 +78,8 @@ export default {
           birthday: "01/01/1990",
           number: "09354495399"
         }
-      ]
+      ],
+      showImage: false
     };
   }
 };

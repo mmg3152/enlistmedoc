@@ -9,14 +9,45 @@
 
           <v-container>
             <v-layout row wrap>
-              <v-flex xs12>
-                <v-select
-                  :items="doctors"
-                  item-text="name"
-                  label="Select Doctor"
-                  style="display: inline-block;"
-                  @change="selectDoctor"
-                ></v-select>
+              <v-flex xs12 md6>
+                <v-avatar
+                  :tile="true"
+                  :size="100"
+                  color="grey lighten-4"
+                  class="hidden-sm-and-down"
+                >
+                  <img
+                    v-bind:src="!selectedDoctor ? imagePlaceholder : require(`@/assets/${selectedDoctor.image}`)"
+                    alt="avatar"
+                  >
+                </v-avatar>
+                <div class="hidden-md-and-up text-xs-center">
+                  <v-avatar :tile="true" :size="200" color="grey lighten-4">
+                    <img
+                      v-bind:src="!selectedDoctor ? imagePlaceholder : require(`@/assets/${selectedDoctor.image}`)"
+                      alt="avatar"
+                    >
+                  </v-avatar>
+                </div>
+                <div
+                  class="ml-3"
+                  style="display: inline-block; vertical-align: middle; height: 100px"
+                >
+                  <v-select
+                    hide-details
+                    :items="doctors"
+                    item-text="name"
+                    label="Select Doctor"
+                    style="display: inline-block;"
+                    @change="selectDoctor"
+                  ></v-select>
+                  <p
+                    class="mt-2 mb-0 font-weight-bold"
+                  >{{ selectedDoctor ? selectedDoctor.description : "" }}</p>
+                  <p class="mb-0">{{ selectedDoctor ? 'October 18, 2018': '' }}</p>
+                </div>
+              </v-flex>
+              <v-flex xs12 md6>
                 <v-btn
                   depressed
                   dark
@@ -25,11 +56,6 @@
                   style="float: right;"
                   @click="$router.push({ name: 'Secretary Create' })"
                 >Create</v-btn>
-              </v-flex>
-              <v-flex xs12>
-                <template v-if="selectedDoctor">
-                  <span class="grey--text">Department: {{ selectedDoctor.department }}</span>
-                </template>
               </v-flex>
               <v-flex xs12>
                 <template v-if="selectedDoctor">
@@ -100,8 +126,11 @@ export default {
       selectedDoctor: null,
       doctors: [
         {
+          id: 1,
           name: "Dr. Diego Uy",
-          department: "Sample 1",
+          description: "ORTHOPEDICS - Sports Medicine",
+          image: "johndoe.jpg",
+          currentPatient: 1,
           schedule: [
             {
               day: "Monday",
@@ -111,96 +140,11 @@ export default {
           ]
         },
         {
-          name: "Dr. Paul Castillo",
-          department: "Sample 2",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
+          id: 2,
           name: "Dr. Traeni Paulino",
-          department: "Sample 3",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Renn Remula",
-          department: "Sample 4",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Ailyn Nerves",
-          department: "Sample 5",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Hazel Ngo",
-          department: "Sample 6",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Genez Cruz",
-          department: "Sample 7",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Hannah Dailo",
-          department: "Sample 8",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Gener Cruz",
-          department: "Sample 9",
-          schedule: [
-            {
-              day: "Monday",
-              time: "10:00-2:00pm",
-              room: "CTH 204"
-            }
-          ]
-        },
-        {
-          name: "Dr. Sherwin Castro",
-          department: "Sample 10",
+          description: "DENTIST",
+          image: "johndoe2.jpg",
+          currentPatient: 2,
           schedule: [
             {
               day: "Monday",
@@ -209,7 +153,8 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      imagePlaceholder: require("@/assets/placeholder-person.jpg")
     };
   },
   methods: {
@@ -225,6 +170,9 @@ export default {
         showCancelButton: true
       });
     }
+  },
+  created() {
+    console.log(this);
   }
 };
 </script>

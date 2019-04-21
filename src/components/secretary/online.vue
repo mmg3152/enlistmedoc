@@ -26,8 +26,30 @@
               </v-flex>
               <template v-if="selectedDoctor">
                 <v-flex xs12 md8>
-                  <template v-for="update in updates[selectedDoctor]">
-                    <div class="grey lighten-1 pt-3 pb-1 px-4 mb-3" :key="update.id">
+                  <template v-for="(update, key) in updates[selectedDoctor]">
+                    <div
+                      class="grey lighten-1 pt-3 pb-1 px-4 mb-3"
+                      :key="update.id"
+                      style="position: relative;"
+                    >
+                      <v-btn
+                        flat
+                        icon
+                        color="#075525"
+                        style="position: absolute; top: 0px; right: 50px;"
+                        @click="showEditDialog(key)"
+                      >
+                        <v-icon>edit</v-icon>
+                      </v-btn>
+                      <v-btn
+                        flat
+                        icon
+                        color="error"
+                        style="position: absolute; top: 0px; right: 0px;"
+                        @click="showConfirmation"
+                      >
+                        <v-icon>delete</v-icon>
+                      </v-btn>
                       <h2>{{ update.message }}</h2>
                       <div class="text-xs-right">
                         <span>Posted on {{ update.created_at }}</span>
@@ -55,6 +77,21 @@
         </v-container>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="editDialog" persistent width="350">
+      <v-card>
+        <v-card-title>
+          <h4 class="headline">Edit Post</h4>
+        </v-card-title>
+        <v-card-text>
+          <v-textarea v-model="toBeEditText"></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn depressed dark color="error" @click="editDialog = false;">Cancel</v-btn>
+          <v-btn depressed dark color="#075525" @click="edit">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -66,6 +103,9 @@ export default {
   data() {
     return {
       showDialog: false,
+      editDialog: false,
+      toBeEditId: null,
+      toBeEditText: "",
       selectedDoctor: "",
       doctors: [
         {
@@ -129,6 +169,27 @@ export default {
       this.updates[this.selectedDoctor].unshift(data);
       this.message = "";
       this.showDialog = false;
+    },
+    showEditDialog(id) {
+      console.log(id);
+      console.log(this.updates[this.selectedDoctor][id]["message"]);
+      this.editDialog = true;
+      this.toBeEditId = id;
+      this.toBeEditText = this.updates[this.selectedDoctor][id]["message"];
+    },
+    edit() {
+      this.updates[this.selectedDoctor][this.toBeEditId][
+        "message"
+      ] = this.toBeEditText;
+
+      this.editDialog = false;
+    },
+    showConfirmation() {
+      this.$swal({
+        title: "Are you sure you want to delete this?",
+        type: "warning",
+        showCancelButton: true
+      });
     }
   }
 };

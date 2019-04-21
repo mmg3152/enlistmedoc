@@ -75,11 +75,11 @@ const Routes = new Router({
     {
       path: "/user/search/result",
       name: "Search Result",
-      component: SearchValue,
-      meta: {
-        requiresAuth: true,
-        type: "User"
-      }
+      component: SearchValue
+      // meta: {
+      //   requiresAuth: true,
+      //   type: "User"
+      // }
     },
     {
       path: "/user/my-enlistment",

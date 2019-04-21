@@ -1,7 +1,7 @@
 <template>
   <v-container mt-5>
     <v-layout row wrap justify-center>
-      <v-flex xs12 md4>
+      <v-flex xs12 sm6 md4>
         <v-card color="rgba(242, 241, 239, 0.7)">
           <v-container>
             <v-layout row wrap>
@@ -13,7 +13,7 @@
                 </div>
                 <v-select :items="items" label="Specialization"></v-select>
               </v-flex>
-              <v-flex xs12>
+              <v-flex xs12 class="text-xs-center">
                 <v-btn
                   block
                   depressed

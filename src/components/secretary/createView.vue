@@ -35,11 +35,20 @@
                 </div>
               </v-flex>
               <v-flex xs12>
-                <v-select :items="days" label="Day" class="d-inline-block"></v-select>
                 <v-select :items="rooms" label="Room" class="d-inline-block"></v-select>
               </v-flex>
               <v-flex xs12>
-                <p class="body-1 mb-0">Time</p>
+                <!-- <v-select chips attach multiple :items="days" label="Day" class="d-inline-block"></v-select> -->
+                <v-checkbox label="Monday" class="d-inline-block ml-2"></v-checkbox>
+                <v-checkbox label="Tuesday" class="d-inline-block ml-2"></v-checkbox>
+                <v-checkbox label="Wednesday" class="d-inline-block ml-2"></v-checkbox>
+                <v-checkbox label="Thursday" class="d-inline-block ml-2"></v-checkbox>
+                <v-checkbox label="Friday" class="d-inline-block ml-2"></v-checkbox>
+                <v-checkbox label="Saturday" class="d-inline-block ml-2"></v-checkbox>
+                <v-checkbox label="Sunday" class="d-inline-block ml-2"></v-checkbox>
+              </v-flex>
+              <v-flex xs12>
+                <!-- <p class="body-1 mb-0">Time</p>
                 <v-dialog
                   ref="startDialog"
                   v-model="startModal"
@@ -86,7 +95,13 @@
                   </v-time-picker>
                 </v-dialog>
 
-                <v-text-field label="Maximum Patients" class="d-inline-block"></v-text-field>
+                <v-text-field label="Maximum Patients" class="d-inline-block"></v-text-field>-->
+                <span class="body-1 font-weight-bold mr-3">Start Time</span>
+                <v-text-field type="time" class="d-inline-block"/>
+              </v-flex>
+              <v-flex xs12>
+                <span class="body-1 font-weight-bold mr-3">End Time</span>
+                <v-text-field type="time" class="d-inline-block"/>
               </v-flex>
               <v-flex xs12 text-xs-right>
                 <v-btn depressed dark color="#075525" class="px-5" style="float: right;">Create</v-btn>
